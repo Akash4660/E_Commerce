@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.auth_service.dto.RegisterRequest;
 import com.ecommerce.auth_service.entity.Role;
 import com.ecommerce.auth_service.entity.User;
+import com.ecommerce.auth_service.exception.EmailAlreadyExistsException;
 import com.ecommerce.auth_service.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,10 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public String register(RegisterRequest request){
-        if(userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already in use");
-        }
+       
+    if (userRepository.existsByEmail(request.getEmail())) {
+        throw new EmailAlreadyExistsException("Email already exists");
+    }
         User user = User.builder()
         .username(request.getUsername())
         .email(request.getEmail())
