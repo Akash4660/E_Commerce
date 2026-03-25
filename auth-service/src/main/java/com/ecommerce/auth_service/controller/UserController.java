@@ -6,12 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/test")
-public class TestController {
+@RequestMapping("/api/users")
+public class UserController {
 
-    @GetMapping("/protected")
-    public String test(Authentication auth) {
-      
-        return  auth.getName() + ", Protected API working";
+    @GetMapping("/user")
+    public String userApi() {
+    return "User API";
     }
+
+    @GetMapping("/debug")
+public Object debug(Authentication auth) {
+    return auth.getAuthorities();
+}   
+
 }
