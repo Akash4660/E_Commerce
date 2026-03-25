@@ -1,7 +1,6 @@
 package com.ecommerce.auth_service.security;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import com.ecommerce.auth_service.util.JwtUtil;
 
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Component;
 public class JwtFilter implements Filter {
 
     private final JwtUtil jwtUtil;
+    
     private final CustomUserDetailsService userDetailsService;
 
     @Override
